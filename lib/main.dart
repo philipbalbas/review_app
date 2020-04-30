@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:review_app/screens/subjects_list_screen.dart';
 
-import 'screens/modules_screen.dart';
+import 'screens/modules_list_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +14,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.indigo,
         primaryColor: Colors.indigo[400],
       ),
-      home: ModuleScreen(),
+      home: ModuleListScreen(),
+      routes: {
+        SubjectsListScreen.routeName: (ctx) => SubjectsListScreen(),
+      },
     );
   }
 }

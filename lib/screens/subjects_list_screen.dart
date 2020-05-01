@@ -24,7 +24,7 @@ class SubjectsListScreen extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(bottom: 25),
+              padding: EdgeInsets.only(bottom: 20),
               child: Text(
                 'Pharmaceutical Chemistry',
                 style: TextStyle(
@@ -37,13 +37,11 @@ class SubjectsListScreen extends StatelessWidget {
             Expanded(
               child: ListView.builder(
                 itemCount: entries.length,
-                itemBuilder: (ctx, i) {
-                  return SubjectItem(
-                    entries: entries,
-                    progress: progress,
-                    index: i,
-                  );
-                },
+                itemBuilder: (ctx, i) => SubjectItem(
+                  entries: entries,
+                  progress: progress,
+                  index: i,
+                ),
               ),
             )
           ],

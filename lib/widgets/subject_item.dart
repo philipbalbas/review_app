@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:review_app/screens/topics_list_screen.dart';
 
 class SubjectItem extends StatelessWidget {
   const SubjectItem({
@@ -25,7 +26,9 @@ class SubjectItem extends StatelessWidget {
       elevation: 5,
       child: ListTile(
         contentPadding: EdgeInsets.all(15),
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).pushNamed(TopicsListScreen.routeName);
+        },
         title: Container(
           padding: EdgeInsets.only(bottom: 20),
           child: Text(
@@ -51,7 +54,6 @@ class SubjectItem extends StatelessWidget {
             LinearPercentIndicator(
               padding: EdgeInsets.only(top: 10),
               alignment: MainAxisAlignment.center,
-              width: MediaQuery.of(context).size.width * 0.8,
               lineHeight: 8.0,
               percent: progress[index] / 100,
               progressColor: isComplete ? Colors.white : Colors.indigo,

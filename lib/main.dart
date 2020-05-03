@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:review_app/screens/quiz_screen.dart';
 
 import 'screens/modules_list_screen.dart';
 import 'screens/subjects_list_screen.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       routes: {
         SubjectsListScreen.routeName: (ctx) => SubjectsListScreen(),
         TopicsListScreen.routeName: (ctx) => TopicsListScreen(),
+        QuizScreen.routeName: (ctx) => QuizScreen(),
       },
     );
   }

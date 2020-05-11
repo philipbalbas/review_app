@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:review_app/screens/quiz_screen.dart';
+
+import '../screens/quiz_screen.dart';
 
 class TopicsItem extends StatefulWidget {
   const TopicsItem({

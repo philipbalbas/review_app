@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:review_app/widgets/modules_list.dart';
 
 import '../widgets/module_item.dart';
 
@@ -25,21 +26,10 @@ class _ModuleListScreenState extends State<ModuleListScreen> {
       ),
       body: Padding(
         padding: EdgeInsets.all(15),
-        child: GridView.count(
-          crossAxisCount: 2,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          children: <Widget>[
-            ModuleItem('Pharmaceutical Chemistry', 100),
-            ModuleItem('Pharmacognosy', 20),
-            ModuleItem('Practice of Pharmacy', 35),
-            ModuleItem('Pharmacology/Pharmacokinetics', 25),
-            ModuleItem('Pharmaceutics', 0),
-            ModuleItem('Quality Assurance / Quality Control', 0),
-          ],
+        child: Container(
+          child: ModulesList(),
         ),
       ),
     );
-    ;
   }
 }

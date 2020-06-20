@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:review_app/widgets/topic_item.dart';
 
-import '../models/module.dart';
 import '../models/subject.dart';
+import '../models/topic.dart';
 import 'subject_item.dart';
 
-class SubjectsList extends StatelessWidget {
-  final Module module;
+class TopicsList extends StatelessWidget {
+  final Subject subject;
 
-  const SubjectsList({Key key, this.module}) : super(key: key);
+  const TopicsList({Key key, this.subject}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Query(
       options: QueryOptions(
         documentNode: gql(r'''
-            query SubjectsList($moduleId: ID!) {
-              listSubjects(filter: {
-                moduleId: $moduleId
+            query TopicsList($subjectId: ID!) {
+              listTopics(filter: {
+                subjectId: $subjectId
               }) {
                 id
                 name
@@ -26,7 +27,7 @@ class SubjectsList extends StatelessWidget {
               }
             }
           '''),
-        variables: {"moduleId": module.id},
+        variables: {"subjectId": subject.id},
       ),
       builder: (
         QueryResult result, {
@@ -44,15 +45,19 @@ class SubjectsList extends StatelessWidget {
         }
         return ListView.builder(
           itemBuilder: (ctx, index) {
-            final subject = Subject(
-              id: result.data['listSubjects'][index]['id'],
-              name: result.data['listSubjects'][index]['name'],
-              description: result.data['listSubjects'][index]['description'],
-              order: result.data['listSubjects'][index]['order'],
+            final topic = Topic(
+              id: result.data['listTopics'][index]['id'],
+              name: result.data['listTopics'][index]['name'],
+              description: result.data['listTopics'][index]['description'],
+              content: result.data['listTopics'][index]['content'],
+              order: result.data['listTopics'][index]['order'],
             );
-            return SubjectItem(subject: subject, progress: 100);
+            return TopicItem(
+              topic: topic,
+              progress: 100,
+            );
           },
-          itemCount: result.data['listSubjects'].length,
+          itemCount: result.data['listTopics'].length,
         );
       },
     );

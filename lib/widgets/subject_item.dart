@@ -26,7 +26,8 @@ class SubjectItem extends StatelessWidget {
       child: ListTile(
         contentPadding: EdgeInsets.all(15),
         onTap: () {
-          Navigator.of(context).pushNamed(TopicsListScreen.routeName);
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (ctx) => TopicsListScreen(subject)));
         },
         title: Container(
           padding: EdgeInsets.only(bottom: 20),

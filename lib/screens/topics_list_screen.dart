@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:review_app/widgets/topics_item.dart';
+
+import '../models/subject.dart';
+import '../widgets/topics_list.dart';
 
 class TopicsListScreen extends StatelessWidget {
   static String routeName = '/topics-list';
+
+  final Subject subject;
 
   final List<String> topics = [
     'Kinetics and Chemical Equilibrium',
@@ -12,6 +16,8 @@ class TopicsListScreen extends StatelessWidget {
   ];
 
   final List<double> progress = [100, 50, 20, 34];
+
+  TopicsListScreen(this.subject);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +35,7 @@ class TopicsListScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Text(
-                    'Inorganic Chemistry',
+                    subject.name,
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontSize: 25,
@@ -40,19 +46,13 @@ class TopicsListScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 25),
                   child: Text(
-                    'The chemistry and pharmacy of inorganic medicinals, with emphasis on those officia; in the USP and NF, their preparations, properties, tests and uses.',
+                    subject.description,
                     style: TextStyle(color: Colors.grey[600]),
                   ),
                 )
               ],
             ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: topics.length,
-                itemBuilder: (ctx, i) =>
-                    TopicsItem(topic: topics[i], progress: progress[i]),
-              ),
-            )
+            Expanded(child: TopicsList(subject: subject))
           ],
         ),
       ),

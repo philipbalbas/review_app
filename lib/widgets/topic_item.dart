@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:review_app/models/topic.dart';
 
 import '../screens/quiz_screen.dart';
 
-class TopicsItem extends StatefulWidget {
-  const TopicsItem({
+class TopicItem extends StatefulWidget {
+  const TopicItem({
     Key key,
     @required this.topic,
     this.progress,
   }) : super(key: key);
 
-  final String topic;
+  final Topic topic;
   final double progress;
 
   @override
   _TopicsItemState createState() => _TopicsItemState();
 }
 
-class _TopicsItemState extends State<TopicsItem> {
-  final List<String> _entries = [
-    'Kinetics',
-    'Chemical Equilibrium',
-  ];
-
+class _TopicsItemState extends State<TopicItem> {
   bool _isOpen;
 
   @override
@@ -53,7 +49,7 @@ class _TopicsItemState extends State<TopicsItem> {
             title: Container(
               padding: EdgeInsets.only(bottom: 20),
               child: Text(
-                widget.topic,
+                widget.topic.name,
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -77,33 +73,33 @@ class _TopicsItemState extends State<TopicsItem> {
             ),
             onTap: _openCard,
           ),
-          if (_isOpen)
-            ListView.builder(
-              shrinkWrap: true,
-              physics: ClampingScrollPhysics(),
-              itemCount: _entries.length,
-              itemBuilder: (ctx, i) => Container(
-                decoration: BoxDecoration(
-                  border: Border(
-                    top: BorderSide(
-                      width: 1,
-                      color: Colors.purple,
-                    ),
-                  ),
-                ),
-                child: Container(
-                  child: ListTile(
-                    dense: true,
-                    onTap: () {
-                      Navigator.of(context).pushNamed(QuizScreen.routeName);
-                    },
-                    title: Text(_entries[i]),
-                    trailing: Icon(Icons.play_arrow),
-                    subtitle: Text('0/12'),
-                  ),
-                ),
-              ),
-            ),
+          // if (_isOpen)
+          //   ListView.builder(
+          //     shrinkWrap: true,
+          //     physics: ClampingScrollPhysics(),
+          //     itemCount: 1,
+          //     itemBuilder: (ctx, i) => Container(
+          //       decoration: BoxDecoration(
+          //         border: Border(
+          //           top: BorderSide(
+          //             width: 1,
+          //             color: Colors.purple,
+          //           ),
+          //         ),
+          //       ),
+          //       child: Container(
+          //         child: ListTile(
+          //           dense: true,
+          //           onTap: () {
+          //             Navigator.of(context).pushNamed(QuizScreen.routeName);
+          //           },
+          //           title: Text("topic"),
+          //           trailing: Icon(Icons.play_arrow),
+          //           subtitle: Text('0/12'),
+          //         ),
+          //       ),
+          //     ),
+          //   ),
         ],
       ),
     );

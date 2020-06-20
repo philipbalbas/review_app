@@ -24,7 +24,6 @@ class MyApp extends StatelessWidget {
         ),
         home: ModuleListScreen(),
         routes: {
-          SubjectsListScreen.routeName: (ctx) => SubjectsListScreen(),
           TopicsListScreen.routeName: (ctx) => TopicsListScreen(),
           QuizScreen.routeName: (ctx) => QuizScreen(),
           ResultScreen.routeName: (ctx) => ResultScreen(),

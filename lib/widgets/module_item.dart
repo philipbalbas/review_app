@@ -1,30 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
+import '../models/module.dart';
 import '../screens/subjects_list_screen.dart';
 
 class ModuleItem extends StatelessWidget {
-  final String title;
+  final Module module;
   final int progress;
 
-  ModuleItem(this.title, this.progress);
+  ModuleItem(this.module, this.progress);
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: InkWell(
         onTap: () {
-          Navigator.of(context).pushNamed(SubjectsListScreen.routeName);
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (ctx) => SubjectsListScreen(module)));
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Text(
-              title,
+              module.name,
               style: TextStyle(
                 color: progress == 100 ? Colors.white : Colors.black,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              module.description,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 14,
               ),
               textAlign: TextAlign.center,
             ),

@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:review_app/models/subject.dart';
 import 'package:review_app/screens/topics_list_screen.dart';
 
 class SubjectItem extends StatelessWidget {
   const SubjectItem({
     Key key,
-    @required this.entries,
+    @required this.subject,
     @required this.progress,
-    this.index,
   }) : super(key: key);
 
-  final List<String> entries;
-  final List<double> progress;
-  final int index;
+  final Subject subject;
+  final int progress;
 
   bool get isComplete {
-    return progress[index] == 100;
+    return progress == 100;
   }
 
   @override
@@ -32,7 +31,7 @@ class SubjectItem extends StatelessWidget {
         title: Container(
           padding: EdgeInsets.only(bottom: 20),
           child: Text(
-            entries[index],
+            subject.name,
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -44,7 +43,7 @@ class SubjectItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              isComplete ? 'Completed' : 'Progress: ${progress[index]}%',
+              isComplete ? 'Completed' : 'Progress: $progress%',
               textAlign: TextAlign.left,
               style: TextStyle(
                 color:
@@ -55,7 +54,7 @@ class SubjectItem extends StatelessWidget {
               padding: EdgeInsets.only(top: 10),
               alignment: MainAxisAlignment.center,
               lineHeight: 8.0,
-              percent: progress[index] / 100,
+              percent: progress / 100,
               progressColor: isComplete ? Colors.white : Colors.indigo,
             ),
           ],

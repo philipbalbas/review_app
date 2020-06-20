@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:review_app/widgets/subjects_list.dart';
 
+import '../models/module.dart';
 import '../widgets/subject_item.dart';
 
 class SubjectsListScreen extends StatelessWidget {
-  static String routeName = '/subjects-list';
+  final Module module;
 
   final List<String> entries = [
     'Inorganic Chemistry',
@@ -12,6 +14,8 @@ class SubjectsListScreen extends StatelessWidget {
   ];
 
   final List<double> progress = [100, 50, 20];
+
+  SubjectsListScreen(this.module);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +30,7 @@ class SubjectsListScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(bottom: 20),
               child: Text(
-                'Pharmaceutical Chemistry',
+                module.description,
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,
                   fontSize: 25,
@@ -34,16 +38,7 @@ class SubjectsListScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: entries.length,
-                itemBuilder: (ctx, i) => SubjectItem(
-                  entries: entries,
-                  progress: progress,
-                  index: i,
-                ),
-              ),
-            )
+            Expanded(child: SubjectsList(module: module))
           ],
         ),
       ),
